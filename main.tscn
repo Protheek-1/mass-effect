@@ -3,5 +3,7 @@
 [node name="Main" type="Node2D" unique_id=455958899]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1408265289]
-offset_right = 18777.0
-offset_bottom = 11887.0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 18774.0
+offset_bottom = 11884.0
