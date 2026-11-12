@@ -1,5 +1,22 @@
 [gd_scene format=3 uid="uid://c3g7fo4mbdtn4"]
 
+[ext_resource type="Script" uid="uid://mab5vt225wmu" path="res://camera_2d.gd" id="1_0xm2m"]
+[ext_resource type="Shader" uid="uid://b5cepsx5pdx7i" path="res://main.gdshader" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://v1700ihoo13t" path="res://heavy.tscn" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://ddfweg6ov2qeo" path="res://filter.gd" id="3_h2yge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dcsxo"]
+size = Vector2(1895, 914)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dcsxo"]
+shader = ExtResource("1_ig7tw")
+shader_parameter/grain_amount = 0.025
+shader_parameter/grain_size = 2.0
+shader_parameter/grain_speed = 12.0
+shader_parameter/vignette_intensity = 0.18
+shader_parameter/vignette_softness = 0.65
+shader_parameter/swap_pulse = 0.0
+
 [node name="Main" type="Node2D" unique_id=455958899]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1408265289]
@@ -9,4 +26,30 @@ offset_right = 18256.0
 offset_bottom = 11256.0
 color = Color(0.7717387, 0.8531009, 0.98742384, 1)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1852099304]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1852099304 node_paths=PackedStringArray("player")]
+script = ExtResource("1_0xm2m")
+player = NodePath("../Heavy")
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=723804172]
+position = Vector2(-46, -211)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1542542724]
+position = Vector2(317.5, 734)
+shape = SubResource("RectangleShape2D_dcsxo")
+
+[node name="ColorRect" type="ColorRect" parent="Floor" unique_id=1546706322]
+offset_left = -620.0
+offset_top = 276.0
+offset_right = 1272.0
+offset_bottom = 1198.0
+
+[node name="Heavy" parent="." unique_id=1903036429 instance=ExtResource("2_1bvp3")]
+
+[node name="Filter" type="ColorRect" parent="." unique_id=1532236078]
+z_index = 2
+material = SubResource("ShaderMaterial_dcsxo")
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("3_h2yge")

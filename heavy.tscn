@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://v1700ihoo13t"]
+
+[ext_resource type="Script" uid="uid://b6k7aanibyenj" path="res://heavy.gd" id="1_ojdgy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dcsxo"]
+size = Vector2(105, 149)
+
+[node name="Heavy" type="CharacterBody2D" unique_id=1903036429]
+scale = Vector2(0.15999927, 0.15999955)
+script = ExtResource("1_ojdgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1008058106]
+position = Vector2(54.5, 77.5)
+shape = SubResource("RectangleShape2D_dcsxo")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1500380666]
+offset_right = 107.0
+offset_bottom = 153.0
