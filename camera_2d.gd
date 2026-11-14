@@ -2,6 +2,7 @@ extends Camera2D
 
 @export var player: CharacterBody2D 
 
+
 const ROOM_WIDTH: float = 320.0
 const ROOM_HEIGHT: float = 180.0
 

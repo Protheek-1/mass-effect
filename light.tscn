@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cmd3nt20uqo65"]
+
+[ext_resource type="Script" uid="uid://dgg8ii8tybj6l" path="res://light.gd" id="1_hdgcg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_we4ua"]
+size = Vector2(105, 149)
+
+[node name="Light" type="CharacterBody2D" unique_id=199912418]
+scale = Vector2(0.16, 0.16)
+script = ExtResource("1_hdgcg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1147086959]
+position = Vector2(54.5, 77.5)
+shape = SubResource("RectangleShape2D_we4ua")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=606662971]
+offset_right = 107.0
+offset_bottom = 153.0
