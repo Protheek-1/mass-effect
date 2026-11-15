@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dh2x8bp37y1a2" path="res://door_manager.gd" id="2_272bh"]
 [ext_resource type="Script" uid="uid://ddfweg6ov2qeo" path="res://filter.gd" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cmd3nt20uqo65" path="res://light.tscn" id="4_272bh"]
+[ext_resource type="FontFile" uid="uid://43666li6et7g" path="res://ThaleahFat.ttf" id="7_kek77"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c84w1"]
 size = Vector2(2, 227)
@@ -193,16 +194,34 @@ door_type = 1
 linked_door = NodePath("../Door5")
 allowed_character = 0
 
-[node name="Door9" parent="Doors" unique_id=1370064198 node_paths=PackedStringArray("partner_door") instance=ExtResource("2_7mycd")]
+[node name="Door9" parent="Doors" unique_id=1370064198 node_paths=PackedStringArray("linked_door", "partner_door") instance=ExtResource("2_7mycd")]
 z_index = -1
 position = Vector2(1023, 59)
+linked_door = NodePath("../Door12")
 allowed_character = 0
 partner_door = NodePath("../Door10")
 
-[node name="Door10" parent="Doors" unique_id=1433465031 node_paths=PackedStringArray("partner_door") instance=ExtResource("2_7mycd")]
+[node name="Door10" parent="Doors" unique_id=1433465031 node_paths=PackedStringArray("linked_door", "partner_door") instance=ExtResource("2_7mycd")]
 z_index = -1
 position = Vector2(1022, -51)
+linked_door = NodePath("../Door11")
 allowed_character = 1
+partner_door = NodePath("../Door9")
+
+[node name="Door11" parent="Doors" unique_id=907109512 node_paths=PackedStringArray("linked_door", "partner_door") instance=ExtResource("2_7mycd")]
+z_index = -1
+position = Vector2(1098, 60)
+door_type = 1
+linked_door = NodePath("../Door10")
+allowed_character = 1
+partner_door = NodePath("../Door9")
+
+[node name="Door12" parent="Doors" unique_id=440818407 node_paths=PackedStringArray("linked_door", "partner_door") instance=ExtResource("2_7mycd")]
+z_index = -1
+position = Vector2(1145, 60)
+door_type = 1
+linked_door = NodePath("../Door9")
+allowed_character = 0
 partner_door = NodePath("../Door9")
 
 [node name="Platforms" type="Node" parent="." unique_id=480517103]
@@ -276,6 +295,16 @@ position = Vector2(-191, 79)
 
 [node name="Light" parent="." unique_id=199912418 instance=ExtResource("4_272bh")]
 position = Vector2(-188, -37)
+
+[node name="Label" type="Label" parent="." unique_id=1140927904]
+offset_left = 1216.0
+offset_top = -41.0
+offset_right = 1420.0
+offset_bottom = 3.0
+theme_override_colors/font_color = Color(0.22352941, 0.49803922, 0.65882355, 1)
+theme_override_fonts/font = ExtResource("7_kek77")
+theme_override_font_sizes/font_size = 48
+text = "Yay u win !"
 
 [node name="Filter" type="ColorRect" parent="." unique_id=1532236078]
 z_index = 2

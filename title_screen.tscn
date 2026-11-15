@@ -1,29 +1,81 @@
 [gd_scene format=3 uid="uid://6qash48n1k8v"]
 
+[ext_resource type="Script" uid="uid://i32a0mjxhi46" path="res://title_screen.gd" id="1_05l2w"]
+[ext_resource type="FontFile" uid="uid://43666li6et7g" path="res://ThaleahFat.ttf" id="1_ig5kc"]
+[ext_resource type="Shader" uid="uid://b5cepsx5pdx7i" path="res://main.gdshader" id="2_05l2w"]
+[ext_resource type="Script" uid="uid://sch6jjwnhxv5" path="res://filter_title_screen.gd" id="4_05l2w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tpml5"]
+shader = ExtResource("2_05l2w")
+shader_parameter/scanline_amount = 0.06
+shader_parameter/scanline_spacing = 4.0
+shader_parameter/vignette_intensity = 0.18
+shader_parameter/swap_pulse = 0.0
+
 [node name="TitleScreen" type="Control" unique_id=682794792]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 484.99994
+offset_bottom = 272.49997
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_05l2w")
 
 [node name="Background" type="ColorRect" parent="." unique_id=30309275]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 821.0
+offset_bottom = 479.0
+color = Color(0.4622442, 0.76974624, 0.85339284, 1)
 
 [node name="Title" type="Label" parent="." unique_id=1866698828]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 80
+offset_left = 160.0
+offset_top = 122.5
+offset_right = 664.0
+offset_bottom = 232.5
+theme_override_colors/font_color = Color(0.09803922, 0.26666668, 0.36862746, 1)
+theme_override_fonts/font = ExtResource("1_ig5kc")
+theme_override_font_sizes/font_size = 96
 text = "Mass Effect"
 
 [node name="PlayButton" type="Button" parent="." unique_id=1143469111]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 299.0
+offset_top = 282.5
+offset_right = 499.0
+offset_bottom = 320.5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ig5kc")
+theme_override_font_sizes/font_size = 32
+text = "PLAY"
 
 [node name="ControlsButton" type="Button" parent="." unique_id=2040684852]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9710001
+anchor_top = 1.014
+anchor_right = 0.9710001
+anchor_bottom = 1.014
+offset_left = -4.1550903
+offset_top = -3.8349915
+offset_right = 3.8449097
+offset_bottom = 4.1650085
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Filter" type="ColorRect" parent="." unique_id=524726795]
+z_index = 2
+material = SubResource("ShaderMaterial_tpml5")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_05l2w")
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var rise_gravity_mult: float = 1.1
 @export var fall_gravity_mult: float = 2.0
 @export var acceleration: float = 250
-@export var friction: float = 300
+@export var friction: float = 600
 @export var is_active: bool = true
 @onready var light = get_parent().get_node("Light")
 @onready var crt_material: ShaderMaterial = get_parent().get_node("Filter").material
