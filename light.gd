@@ -21,6 +21,12 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 		if not is_on_floor():
 			velocity.y += base_gravity * delta * fall_gravity_mult
+		if is_on_wall() or is_on_floor():
+			for i in range(get_slide_collision_count()):
+				var col = get_slide_collision(i)
+				if col.get_collider() is CharacterBody2D and col.get_normal().y < -0.7:
+					if velocity.y > 0:
+						velocity.y = 0
 		move_and_slide()
 		return
 		
@@ -39,4 +45,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 
+	move_and_slide()
+	
+func apply_launch(launch_power: float) -> void:
+	velocity.y = launch_power
+	global_position.y -= 5.0
 	move_and_slide()

@@ -16,3 +16,7 @@ shape = SubResource("RectangleShape2D_dcsxo")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1500380666]
 offset_right = 107.0
 offset_bottom = 153.0
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=652633747]
+position = Vector2(56.25026, 25.00007)
+target_position = Vector2(0, -56.25016)

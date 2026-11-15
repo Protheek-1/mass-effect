@@ -7,6 +7,7 @@ size = Vector2(105, 149)
 
 [node name="Light" type="CharacterBody2D" unique_id=199912418]
 scale = Vector2(0.16, 0.16)
+safe_margin = 0.001
 script = ExtResource("1_hdgcg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1147086959]
