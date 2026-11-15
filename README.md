@@ -1,5 +1,7 @@
 # Mass Effect
 
+<img width="1585" height="886" alt="Screenshot 2026-11-15 230357" src="https://github.com/user-attachments/assets/ecba7a54-d609-4c43-940c-4d176763bbc8" />
+
 <img width="1589" height="884" alt="Screenshot 2026-11-15 221630" src="https://github.com/user-attachments/assets/ad6b8f60-0c3f-4ba2-8624-768cfeaf20ee" />
 
 a tiny little platformer game where you have a heavy guy and a light guy, tbh i made this game partly due the the theme of this week and partly because i thought the name mass effect would be funny, for completely unknown reasons.
