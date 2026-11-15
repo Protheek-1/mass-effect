@@ -33,11 +33,7 @@ func _physics_process(delta: float) -> void:
 		head_ray.is_colliding()
 		and head_ray.get_collider() == heavy
 	)
-	var standing_on_heavy = (
-		floor_ray.is_colliding()
-		and floor_ray.get_collider() == heavy
-		and velocity.y >= heavy.velocity.y - 1.0
-	)
+	var standing_on_heavy: bool = is_standing_on_heavy()
 	
 	if is_active:
 		if (
@@ -63,3 +59,9 @@ func apply_launch(launch_power: float) -> void:
 		heavy.apply_launch(launch_power)
 	else:
 		velocity.y = launch_power
+func is_standing_on_heavy() -> bool:
+	for ray in [floor_ray, floor_ray_left, floor_ray_right]:
+		ray.force_raycast_update()
+		if ray.is_colliding() and ray.get_collider() == heavy:
+			return true
+	return false

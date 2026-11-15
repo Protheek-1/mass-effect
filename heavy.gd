@@ -31,12 +31,7 @@ func _physics_process(delta: float) -> void:
 	if carrying_light and light.is_active:
 		stop_carrying()
 	if not carrying_light and is_active:
-		light.floor_ray.force_raycast_update()
-		if (
-			light.floor_ray.is_colliding()
-			and light.floor_ray.get_collider() == self
-			and light.velocity.y >= 0.0
-		):
+		if light.is_standing_on_heavy():
 			start_carrying()
 		
 	if not is_on_floor():
