@@ -23,8 +23,8 @@ a tiny little platformer game where you have a heavy guy and a light guy, tbh i 
 7. have fun!!!!
 
 ## Notes
-This is a work in progress, so there's no art or real hard levels and may be rough around the edges.
+This is a work in progress, so there's no art or real hard levels and may be rough around the edges. Made in Godot
 
 ## Links
-- release: 
+- release: https://github.com/Protheek-1/mass-effect/releases/tag/V0.7
 
