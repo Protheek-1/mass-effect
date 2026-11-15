@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://6qash48n1k8v"]
+
+[node name="TitleScreen" type="Control" unique_id=682794792]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="ColorRect" parent="." unique_id=30309275]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="." unique_id=1866698828]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 80
+text = "Mass Effect"
+
+[node name="PlayButton" type="Button" parent="." unique_id=1143469111]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="ControlsButton" type="Button" parent="." unique_id=2040684852]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
