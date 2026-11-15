@@ -9,6 +9,13 @@ size = Vector2(105, 149)
 scale = Vector2(0.16, 0.16)
 safe_margin = 0.001
 script = ExtResource("1_hdgcg")
+speed = null
+jump_velocity = null
+rise_gravity_mult = null
+fall_gravity_mult = null
+acceleration = null
+friction = null
+is_active = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1147086959]
 position = Vector2(54.5, 77.5)
@@ -17,3 +24,11 @@ shape = SubResource("RectangleShape2D_we4ua")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=606662971]
 offset_right = 107.0
 offset_bottom = 153.0
+
+[node name="FloorRay" type="RayCast2D" parent="." unique_id=2144984647]
+position = Vector2(56.25, 131.25)
+target_position = Vector2(0, 31.25)
+
+[node name="HeadRay" type="RayCast2D" parent="." unique_id=1873456273]
+position = Vector2(56.25026, 25.00007)
+target_position = Vector2(0, -37.500107)
