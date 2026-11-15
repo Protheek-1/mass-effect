@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://mab5vt225wmu" path="res://camera_2d.gd" id="1_0xm2m"]
 [ext_resource type="Shader" uid="uid://b5cepsx5pdx7i" path="res://main.gdshader" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://v1700ihoo13t" path="res://heavy.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bi4bq6mlrofga" path="res://door.tscn" id="2_7mycd"]
+[ext_resource type="Script" uid="uid://dh2x8bp37y1a2" path="res://door_manager.gd" id="2_272bh"]
 [ext_resource type="Script" uid="uid://ddfweg6ov2qeo" path="res://filter.gd" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cmd3nt20uqo65" path="res://light.tscn" id="4_272bh"]
 
@@ -22,6 +24,7 @@ shader_parameter/swap_pulse = 0.0
 script = SubResource("GDScript_lquwl")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1408265289]
+z_index = -2
 offset_left = -521.0
 offset_top = -631.0
 offset_right = 18256.0
@@ -33,30 +36,92 @@ zoom = Vector2(0.75, 0.75)
 script = ExtResource("1_0xm2m")
 player = NodePath("../Heavy")
 
+[node name="LevelGuides" type="Node" parent="." unique_id=1747394512]
+
+[node name="ReferenceRect" type="ReferenceRect" parent="LevelGuides" unique_id=252989067]
+offset_left = -214.0
+offset_top = -120.0
+offset_right = 213.0
+offset_bottom = 106.0
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="LevelGuides" unique_id=2038857618]
+offset_left = 285.0
+offset_top = -121.0
+offset_right = 712.0
+offset_bottom = 105.0
+
+[node name="ReferenceRect3" type="ReferenceRect" parent="LevelGuides" unique_id=2010053584]
+offset_left = 762.0
+offset_top = -118.0
+offset_right = 1189.0
+offset_bottom = 108.0
+
+[node name="ReferenceRect4" type="ReferenceRect" parent="LevelGuides" unique_id=529578029]
+offset_left = 1245.0
+offset_top = -120.0
+offset_right = 1672.0
+offset_bottom = 106.0
+
 [node name="Floor" type="StaticBody2D" parent="." unique_id=723804172]
-position = Vector2(-60, -170)
+position = Vector2(3411.0002, 56.000008)
+scale = Vector2(10, 10)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1542542724]
-position = Vector2(317.5, 734)
+position = Vector2(407.6, 462.1)
 shape = SubResource("RectangleShape2D_dcsxo")
 
 [node name="ColorRect" type="ColorRect" parent="Floor" unique_id=1546706322]
-offset_left = -620.0
-offset_top = 276.0
-offset_right = 1272.0
-offset_bottom = 1198.0
+offset_left = -540.7
+offset_top = 4.700012
+offset_right = 1351.3
+offset_bottom = 926.7
+
+[node name="DoorManager" type="Node" parent="." unique_id=2040377826]
+script = ExtResource("2_272bh")
+
+[node name="Doors" type="Node" parent="." unique_id=711129404]
+
+[node name="Door" parent="Doors" unique_id=1573361650 node_paths=PackedStringArray("linked_door", "partner_door") instance=ExtResource("2_7mycd")]
+z_index = -1
+position = Vector2(173.99976, 80)
+linked_door = NodePath("../Door4")
+allowed_character = 0
+partner_door = NodePath("../Door2")
+
+[node name="Door2" parent="Doors" unique_id=1413376315 node_paths=PackedStringArray("linked_door", "partner_door") instance=ExtResource("2_7mycd")]
+z_index = -1
+position = Vector2(115.999756, 79)
+linked_door = NodePath("../Door3")
+allowed_character = 1
+partner_door = NodePath("../Door")
+
+[node name="Door3" parent="Doors" unique_id=101085460 node_paths=PackedStringArray("linked_door") instance=ExtResource("2_7mycd")]
+z_index = -1
+position = Vector2(320, 80)
+door_type = 1
+linked_door = NodePath("../Door2")
+allowed_character = 1
+
+[node name="Door4" parent="Doors" unique_id=2077933324 node_paths=PackedStringArray("linked_door") instance=ExtResource("2_7mycd")]
+z_index = -1
+position = Vector2(368, 80)
+door_type = 1
+linked_door = NodePath("../Door")
+allowed_character = 0
 
 [node name="Heavy" parent="." unique_id=1903036429 instance=ExtResource("2_1bvp3")]
-position = Vector2(-12, 79)
+position = Vector2(-11, 82)
 
 [node name="Light" parent="." unique_id=199912418 instance=ExtResource("4_272bh")]
-position = Vector2(-78, 77)
+position = Vector2(-74, 82)
 
 [node name="Filter" type="ColorRect" parent="." unique_id=1532236078]
 z_index = 2
 material = SubResource("ShaderMaterial_dcsxo")
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -255.0
+offset_top = -169.0
+offset_right = -215.0
+offset_bottom = -129.0
 mouse_filter = 2
 script = ExtResource("3_h2yge")

@@ -16,3 +16,12 @@ shape = SubResource("RectangleShape2D_dcsxo")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1500380666]
 offset_right = 107.0
 offset_bottom = 153.0
+
+[node name="Label" type="Label" parent="." unique_id=1021506446]
+offset_left = 31.250143
+offset_top = 37.500107
+offset_right = 71.250145
+offset_bottom = 104.50011
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "H"

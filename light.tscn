@@ -33,3 +33,12 @@ target_position = Vector2(0, 31.25)
 [node name="HeadRay" type="RayCast2D" parent="." unique_id=1873456273]
 position = Vector2(56.25026, 25.00007)
 target_position = Vector2(0, -37.500107)
+
+[node name="Label" type="Label" parent="." unique_id=1289694635]
+offset_left = 31.250143
+offset_top = 37.500107
+offset_right = 71.250145
+offset_bottom = 104.50011
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "L"
