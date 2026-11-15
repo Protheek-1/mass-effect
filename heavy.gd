@@ -8,10 +8,13 @@ extends CharacterBody2D
 @export var friction: float = 300
 @export var is_active: bool = true
 @onready var light = get_parent().get_node("Light")
+@onready var crt_material: ShaderMaterial = get_parent().get_node("Filter").material
 var base_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var carrying_light: bool = false
 var light_offset := Vector2.ZERO
 var carried_shape: CollisionShape2D
+@onready var camera = get_parent().get_node("Camera2D")
+var was_on_floor: bool = false
 
 func _ready() -> void:
 	light.is_active = not is_active
@@ -24,6 +27,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("swap_charectar"):
 		is_active = not is_active
 		light.is_active = not is_active
+		play_swap_pulse()
 	if carrying_light and light.is_active:
 		stop_carrying()
 	if not carrying_light and is_active:
@@ -53,6 +57,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, friction * delta)
 	move_and_slide()
+	
+	if is_on_floor() and not was_on_floor:
+		landing_shake()
+	was_on_floor = is_on_floor()
 	
 	if carrying_light:
 		light.global_position = global_position + light_offset
@@ -86,4 +94,23 @@ func stop_carrying() -> void:
 	
 func apply_launch(launch_power: float) -> void:
 	velocity.y = launch_power
-	#global_position.y -= 5.0
+
+
+func play_swap_pulse():
+	var tween = create_tween()
+	tween.tween_method(
+		func(value: float):
+			crt_material.set_shader_parameter("swap_pulse", value),
+		0.0, 1.0, 0.08
+	)
+	tween.tween_method(
+		func(value: float):
+			crt_material.set_shader_parameter("swap_pulse", value),
+		1.0, 0.0, 0.25
+	)
+
+func landing_shake():
+	var tween = create_tween()
+	tween.tween_property(camera, "offset", Vector2(0, 2), 0.04)
+	tween.tween_property(camera, "offset", Vector2(0, -1), 0.04)
+	tween.tween_property(camera, "offset", Vector2.ZERO, 0.08)

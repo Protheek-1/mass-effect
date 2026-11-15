@@ -8,6 +8,8 @@ extends CharacterBody2D
 @export var friction: float = 300
 @export var is_active: bool = false
 @onready var floor_ray: RayCast2D = $FloorRay
+@onready var floor_ray_left: RayCast2D = $FloorRayLeft
+@onready var floor_ray_right: RayCast2D = $FloorRayRight
 @onready var head_ray: RayCast2D = $HeadRay
 @onready var heavy = get_parent().get_node("Heavy")
 var base_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")

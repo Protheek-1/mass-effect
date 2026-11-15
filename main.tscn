@@ -13,11 +13,9 @@ size = Vector2(1895, 914)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dcsxo"]
 shader = ExtResource("1_ig7tw")
-shader_parameter/grain_amount = 0.025
-shader_parameter/grain_size = 2.0
-shader_parameter/grain_speed = 12.0
+shader_parameter/scanline_amount = 0.06
+shader_parameter/scanline_spacing = 4.0
 shader_parameter/vignette_intensity = 0.18
-shader_parameter/vignette_softness = 0.65
 shader_parameter/swap_pulse = 0.0
 
 [node name="Main" type="Node2D" unique_id=455958899]
@@ -31,11 +29,12 @@ offset_bottom = 11256.0
 color = Color(0.7717387, 0.8531009, 0.98742384, 1)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1852099304 node_paths=PackedStringArray("player")]
+zoom = Vector2(0.75, 0.75)
 script = ExtResource("1_0xm2m")
 player = NodePath("../Heavy")
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=723804172]
-position = Vector2(-46, -211)
+position = Vector2(-60, -170)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1542542724]
@@ -49,9 +48,10 @@ offset_right = 1272.0
 offset_bottom = 1198.0
 
 [node name="Heavy" parent="." unique_id=1903036429 instance=ExtResource("2_1bvp3")]
+position = Vector2(-12, 79)
 
 [node name="Light" parent="." unique_id=199912418 instance=ExtResource("4_272bh")]
-position = Vector2(-66, -2)
+position = Vector2(-78, 77)
 
 [node name="Filter" type="ColorRect" parent="." unique_id=1532236078]
 z_index = 2
