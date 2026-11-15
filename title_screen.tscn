@@ -5,6 +5,12 @@
 [ext_resource type="Shader" uid="uid://b5cepsx5pdx7i" path="res://main.gdshader" id="2_05l2w"]
 [ext_resource type="Script" uid="uid://sch6jjwnhxv5" path="res://filter_title_screen.gd" id="4_05l2w"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05l2w"]
+bg_color = Color(0.2, 0.2, 0.2, 0.93333334)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hafda"]
+bg_color = Color(0.11764706, 0.11764706, 0.11764706, 0.8392157)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tpml5"]
 shader = ExtResource("2_05l2w")
 shader_parameter/scanline_amount = 0.06
@@ -43,10 +49,10 @@ text = "Mass Effect"
 
 [node name="PlayButton" type="Button" parent="." unique_id=1143469111]
 layout_mode = 0
-offset_left = 299.0
-offset_top = 282.5
-offset_right = 499.0
-offset_bottom = 320.5
+offset_left = 300.0
+offset_top = 260.0
+offset_right = 500.0
+offset_bottom = 298.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_ig5kc")
 theme_override_font_sizes/font_size = 32
@@ -59,12 +65,75 @@ anchor_left = 0.9710001
 anchor_top = 1.014
 anchor_right = 0.9710001
 anchor_bottom = 1.014
-offset_left = -4.1550903
-offset_top = -3.8349915
-offset_right = 3.8449097
-offset_bottom = 4.1650085
+offset_left = -481.65503
+offset_top = -116.33499
+offset_right = -281.65503
+offset_bottom = -78.33499
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ig5kc")
+theme_override_font_sizes/font_size = 32
+text = "Controls"
+
+[node name="ControlsPanel" type="Panel" parent="." unique_id=671128860]
+visible = false
+layout_mode = 0
+offset_right = 804.99994
+offset_bottom = 459.99997
+theme_override_styles/panel = SubResource("StyleBoxFlat_05l2w")
+
+[node name="ControlsTitle" type="Label" parent="ControlsPanel" unique_id=1556264884]
+layout_mode = 0
+offset_left = 247.49998
+offset_top = 27.5
+offset_right = 562.5
+offset_bottom = 101.5
+theme_override_fonts/font = ExtResource("1_ig5kc")
+theme_override_font_sizes/font_size = 80
+text = "Controls"
+
+[node name="MovementLabel" type="Label" parent="ControlsPanel" unique_id=886652000]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 147.5
+offset_right = 687.0
+offset_bottom = 177.5
+theme_override_fonts/font = ExtResource("1_ig5kc")
+theme_override_font_sizes/font_size = 32
+text = "Movement:   WASD or arrow keys"
+
+[node name="SwapLabel" type="Label" parent="ControlsPanel" unique_id=1850163575]
+layout_mode = 0
+offset_left = 317.49997
+offset_top = 200.0
+offset_right = 509.49997
+offset_bottom = 230.0
+theme_override_fonts/font = ExtResource("1_ig5kc")
+theme_override_font_sizes/font_size = 32
+text = "swap:   space"
+
+[node name="RestartLabel" type="Label" parent="ControlsPanel" unique_id=2035360893]
+layout_mode = 0
+offset_left = 272.5
+offset_top = 250.00003
+offset_right = 434.5
+offset_bottom = 280.00003
+theme_override_fonts/font = ExtResource("1_ig5kc")
+theme_override_font_sizes/font_size = 32
+text = "Restart:   R"
+
+[node name="BackButton" type="Button" parent="ControlsPanel" unique_id=54381333]
+layout_mode = 0
+offset_left = 342.5
+offset_top = 317.5
+offset_right = 457.50003
+offset_bottom = 355.5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ig5kc")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_hafda")
+text = "back"
 
 [node name="Filter" type="ColorRect" parent="." unique_id=524726795]
 z_index = 2
@@ -77,5 +146,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("4_05l2w")
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="ControlsPanel/BackButton" to="." method="_on_back_button_pressed"]
