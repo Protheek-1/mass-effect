@@ -3,9 +3,9 @@ extends CharacterBody2D
 @export var speed: float = 90.0
 @export var jump_velocity : float = -340.0
 @export var rise_gravity_mult: float = 0.8
-@export var fall_gravity_mult: float = 0.6
+@export var fall_gravity_mult: float = 0.5
 @export var acceleration: float = 450
-@export var friction: float = 100
+@export var friction: float = 300
 @export var is_active: bool = false
 @onready var floor_ray: RayCast2D = $FloorRay
 @onready var head_ray: RayCast2D = $HeadRay

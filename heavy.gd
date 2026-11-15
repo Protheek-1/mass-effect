@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var speed: float = 90.0
-@export var jump_velocity : float = -340.0
+@export var jump_velocity : float = -380.0
 @export var rise_gravity_mult: float = 1.1
 @export var fall_gravity_mult: float = 2.0
 @export var acceleration: float = 250
@@ -59,27 +59,30 @@ func _physics_process(delta: float) -> void:
 		light.velocity = velocity
 	
 func start_carrying() -> void:
-	carrying_light = true
-	light.carried_by_heavy = true
-	light_offset = light.global_position - global_position
 	var source_shape: CollisionShape2D = light.get_node("CollisionShape2D")
+	light_offset = light.global_position - global_position
 	carried_shape.shape = source_shape.shape
 	carried_shape.transform = (
 		global_transform.affine_inverse()
 		* source_shape.global_transform
 	)
-	source_shape.disabled = true
-	carried_shape.disabled = false
+	carrying_light = true
+	light.carried_by_heavy = true
+	source_shape.set_deferred("disabled", true)
+	carried_shape.set_deferred("disbaled", false)
 	
 func stop_carrying() -> void:
-	carrying_light = false
-	light.carried_by_heavy = false
-	carried_shape.disabled = true
 	var source_shape: CollisionShape2D = light.get_node(
         "CollisionShape2D"
 	)
-	source_shape.disabled = false
+	
+	light.global_position = global_position + light_offset
 	light.velocity = velocity
+	carrying_light = false
+	light.carried_by_heavy = false
+	
+	carried_shape.set_deferred("disbaled", true)
+	source_shape.set_deferred("disabled", false)
 	
 func apply_launch(launch_power: float) -> void:
 	velocity.y = launch_power
