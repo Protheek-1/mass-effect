@@ -1,14 +1,13 @@
 [gd_scene format=3 uid="uid://c3g7fo4mbdtn4"]
 
 [ext_resource type="Script" uid="uid://mab5vt225wmu" path="res://camera_2d.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://dfv18ib4gcwta" path="res://main.gd" id="1_5vw27"]
 [ext_resource type="Shader" uid="uid://b5cepsx5pdx7i" path="res://main.gdshader" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://v1700ihoo13t" path="res://heavy.tscn" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bi4bq6mlrofga" path="res://door.tscn" id="2_7mycd"]
 [ext_resource type="Script" uid="uid://dh2x8bp37y1a2" path="res://door_manager.gd" id="2_272bh"]
 [ext_resource type="Script" uid="uid://ddfweg6ov2qeo" path="res://filter.gd" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cmd3nt20uqo65" path="res://light.tscn" id="4_272bh"]
-
-[sub_resource type="GDScript" id="GDScript_lquwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c84w1"]
 size = Vector2(2, 227)
@@ -25,6 +24,9 @@ size = Vector2(1784.4009, 229.09998)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
 size = Vector2(1784.4009, 229.09998)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c57u"]
+size = Vector2(1784.4009, 229.09998)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dcsxo"]
 shader = ExtResource("1_ig7tw")
 shader_parameter/scanline_amount = 0.06
@@ -33,7 +35,7 @@ shader_parameter/vignette_intensity = 0.18
 shader_parameter/swap_pulse = 0.0
 
 [node name="Main" type="Node2D" unique_id=455958899]
-script = SubResource("GDScript_lquwl")
+script = ExtResource("1_5vw27")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1408265289]
 z_index = -2
@@ -191,6 +193,18 @@ door_type = 1
 linked_door = NodePath("../Door5")
 allowed_character = 0
 
+[node name="Door9" parent="Doors" unique_id=1370064198 node_paths=PackedStringArray("partner_door") instance=ExtResource("2_7mycd")]
+z_index = -1
+position = Vector2(1023, 59)
+allowed_character = 0
+partner_door = NodePath("../Door10")
+
+[node name="Door10" parent="Doors" unique_id=1433465031 node_paths=PackedStringArray("partner_door") instance=ExtResource("2_7mycd")]
+z_index = -1
+position = Vector2(1022, -51)
+allowed_character = 1
+partner_door = NodePath("../Door9")
+
 [node name="Platforms" type="Node" parent="." unique_id=480517103]
 
 [node name="platform" type="StaticBody2D" parent="Platforms" unique_id=2109226773]
@@ -236,6 +250,22 @@ scale = Vector2(0.99999964, 0.99999964)
 shape = SubResource("RectangleShape2D_kek77")
 
 [node name="ColorRect" type="ColorRect" parent="Platforms/platform3" unique_id=1515374825]
+offset_left = -470.0003
+offset_top = 679.99994
+offset_right = 1340.0
+offset_bottom = 926.7
+
+[node name="platform4" type="StaticBody2D" parent="Platforms" unique_id=1403183374]
+position = Vector2(932, -73)
+scale = Vector2(0.1, 0.1)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/platform4" unique_id=1138568361]
+position = Vector2(440, 804.54974)
+scale = Vector2(0.99999964, 0.99999964)
+shape = SubResource("RectangleShape2D_4c57u")
+
+[node name="ColorRect" type="ColorRect" parent="Platforms/platform4" unique_id=123827182]
 offset_left = -470.0003
 offset_top = 679.99994
 offset_right = 1340.0

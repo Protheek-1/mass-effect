@@ -11,33 +11,34 @@ safe_margin = 0.001
 script = ExtResource("1_hdgcg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1147086959]
-position = Vector2(54.5, 77.5)
+position = Vector2(-1.75, 77.5)
 shape = SubResource("RectangleShape2D_we4ua")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=606662971]
-offset_right = 107.0
+offset_left = -56.25
+offset_right = 50.75
 offset_bottom = 153.0
 
 [node name="FloorRay" type="RayCast2D" parent="." unique_id=2144984647]
-position = Vector2(56.25, 131.25)
+position = Vector2(0, 131.25)
 target_position = Vector2(0, 31.25)
 
 [node name="FloorRayRight" type="RayCast2D" parent="." unique_id=851078525]
-position = Vector2(100, 131.25)
+position = Vector2(43.75, 131.25)
 target_position = Vector2(0, 31.25)
 
 [node name="FloorRayLeft" type="RayCast2D" parent="." unique_id=2119784006]
-position = Vector2(6.25, 131.25)
+position = Vector2(-50, 131.25)
 target_position = Vector2(0, 31.25)
 
 [node name="HeadRay" type="RayCast2D" parent="." unique_id=1873456273]
-position = Vector2(56.25026, 25.00007)
+position = Vector2(0.0002593994, 25.00007)
 target_position = Vector2(0, -37.500107)
 
 [node name="Label" type="Label" parent="." unique_id=1289694635]
-offset_left = 31.250143
+offset_left = -24.999857
 offset_top = 37.500107
-offset_right = 71.250145
+offset_right = 15.000143
 offset_bottom = 104.50011
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
