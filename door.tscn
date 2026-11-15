@@ -3,20 +3,21 @@
 [ext_resource type="Script" uid="uid://b6ownhmdjvv1q" path="res://door.gd" id="1_ba8gm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dcsxo"]
-size = Vector2(38, 51)
+size = Vector2(35, 46.5)
 
 [node name="Door" type="Area2D" unique_id=1573361650]
 script = ExtResource("1_ba8gm")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1988167145]
-offset_left = -19.0
-offset_top = -26.0
-offset_right = 19.0
-offset_bottom = 26.0
+offset_left = -18.0
+offset_right = 17.0
+offset_bottom = 47.0
 color = Color(0.601223, 0.601223, 0.60122293, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=252522823]
+position = Vector2(-0.5, 23.25)
 shape = SubResource("RectangleShape2D_dcsxo")
 
 [node name="ArrivalPoint" type="Marker2D" parent="." unique_id=1409855953]
-position = Vector2(0, 14)
+position = Vector2(4, 34)
+gizmo_extents = 3.0

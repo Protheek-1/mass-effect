@@ -42,15 +42,8 @@ func _on_body_entered(body: Node2D, door: Door) -> void:
 			return
 		if not door.partner_door.is_active:
 			return
-		transitioning = true
-		teleport_character(
-			door.entered_body, 
-			door.linked_door
-		)
-		teleport_character(
-		door.partner_door.entered_body,
-		door.partner_door.linked_door
-	)
+		complete_door_transition(door)
+	
 func _on_body_exited(body: Node2D, door: Door):
 	if transitioning or not door.is_goal_door:
 		return
@@ -60,6 +53,7 @@ func _on_body_exited(body: Node2D, door: Door):
 	if body == light_body:
 		light_ready = false
 		light_body = null
+		
 func check_goal() -> void:
 	if not heavy_ready or not light_ready:
 		return
@@ -69,8 +63,26 @@ func check_goal() -> void:
 	transitioning = true
 	teleport_character(heavy_body, heavy_goal.linked_door)
 	teleport_character(light_body, light_goal.linked_door)
+	
 func teleport_character(body: CharacterBody2D, destination: Door) -> void:
 	if body == null or destination == null:
 		return
-	body.global_position = destination.arrival_point.global_position
+	body.global_position = destination.arrival_point.global_position + Vector2(-14, 0)
 	body.velocity = Vector2.ZERO
+
+func complete_door_transition(door: Door) -> void:
+	await get_tree().create_timer(0.1).timeout
+	transitioning = true
+	var first_body = door.entered_body
+	var second_body = door.partner_door.entered_body
+	first_body.is_active = false
+	second_body.is_active = false
+	await get_tree().create_timer(4.0).timeout
+	teleport_character(door.entered_body, door.linked_door)
+	teleport_character(
+		door.partner_door.entered_body,
+		door.partner_door.linked_door
+	)
+	door.is_active = false
+	door.partner_door.is_active = false
+	transitioning = false
