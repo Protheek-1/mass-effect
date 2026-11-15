@@ -4,11 +4,18 @@
 [ext_resource type="Script" uid="uid://dfv18ib4gcwta" path="res://main.gd" id="1_5vw27"]
 [ext_resource type="Shader" uid="uid://b5cepsx5pdx7i" path="res://main.gdshader" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://v1700ihoo13t" path="res://heavy.tscn" id="2_1bvp3"]
+[ext_resource type="Shader" uid="uid://6qqpcocny3bu" path="res://grid.gdshader" id="2_4c57u"]
 [ext_resource type="PackedScene" uid="uid://bi4bq6mlrofga" path="res://door.tscn" id="2_7mycd"]
 [ext_resource type="Script" uid="uid://dh2x8bp37y1a2" path="res://door_manager.gd" id="2_272bh"]
 [ext_resource type="Script" uid="uid://ddfweg6ov2qeo" path="res://filter.gd" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cmd3nt20uqo65" path="res://light.tscn" id="4_272bh"]
 [ext_resource type="FontFile" uid="uid://43666li6et7g" path="res://ThaleahFat.ttf" id="7_kek77"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c84w1"]
+shader = ExtResource("2_4c57u")
+shader_parameter/grid_spacing = 32.0
+shader_parameter/line_width = 2.0
+shader_parameter/grid_color = Color(0.05, 0.3, 0.35, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c84w1"]
 size = Vector2(2, 227)
@@ -38,14 +45,31 @@ shader_parameter/swap_pulse = 0.0
 [node name="Main" type="Node2D" unique_id=455958899]
 script = ExtResource("1_5vw27")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1408265289]
+[node name="BackGround" type="ColorRect" parent="." unique_id=1408265289]
 z_index = -2
 offset_left = -521.0
 offset_top = -631.0
 offset_right = 18256.0
 offset_bottom = 11256.0
-color = Color(0.7717387, 0.8531009, 0.98742384, 1)
+color = Color(0.4627451, 0.76862746, 0.85490197, 1)
 metadata/_edit_lock_ = true
+
+[node name="Grid" type="ColorRect" parent="." unique_id=1220439984]
+visible = false
+material = SubResource("ShaderMaterial_c84w1")
+offset_left = -523.0
+offset_top = -614.0
+offset_right = 757.0
+offset_bottom = 106.0
+
+[node name="Grid2" type="ColorRect" parent="." unique_id=762729540]
+visible = false
+z_index = -1
+material = SubResource("ShaderMaterial_c84w1")
+offset_left = 757.0
+offset_top = -614.0
+offset_right = 2037.0
+offset_bottom = 106.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1852099304 node_paths=PackedStringArray("player")]
 zoom = Vector2(0.75, 0.75)
@@ -132,6 +156,7 @@ offset_left = -540.7
 offset_top = 4.700012
 offset_right = 1351.3
 offset_bottom = 926.7
+color = Color(0.8897218, 0.98164004, 0.9924999, 1)
 
 [node name="DoorManager" type="Node" parent="." unique_id=2040377826]
 script = ExtResource("2_272bh")
@@ -241,6 +266,7 @@ offset_left = -539.9998
 offset_top = 679.99994
 offset_right = 4059.9998
 offset_bottom = 926.7
+color = Color(0.8897218, 0.98164004, 0.9924999, 1)
 
 [node name="platform2" type="StaticBody2D" parent="Platforms" unique_id=2031237718]
 position = Vector2(267.99997, -81)
@@ -257,6 +283,7 @@ offset_left = -539.9998
 offset_top = 679.99994
 offset_right = 1270.0
 offset_bottom = 926.7
+color = Color(0.8897218, 0.98164004, 0.9924999, 1)
 
 [node name="platform3" type="StaticBody2D" parent="Platforms" unique_id=2038555729]
 position = Vector2(505, -81)
@@ -273,6 +300,7 @@ offset_left = -470.0003
 offset_top = 679.99994
 offset_right = 1340.0
 offset_bottom = 926.7
+color = Color(0.8897218, 0.98164004, 0.9924999, 1)
 
 [node name="platform4" type="StaticBody2D" parent="Platforms" unique_id=1403183374]
 position = Vector2(932, -73)
@@ -289,6 +317,7 @@ offset_left = -470.0003
 offset_top = 679.99994
 offset_right = 1340.0
 offset_bottom = 926.7
+color = Color(0.8897218, 0.98164004, 0.9924999, 1)
 
 [node name="Heavy" parent="." unique_id=1903036429 instance=ExtResource("2_1bvp3")]
 position = Vector2(-191, 79)

@@ -12,7 +12,7 @@ script = ExtResource("1_ba8gm")
 offset_left = -18.0
 offset_right = 17.0
 offset_bottom = 47.0
-color = Color(0.601223, 0.601223, 0.60122293, 1)
+color = Color(0.79199904, 0.79199916, 0.7919989, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=252522823]
 position = Vector2(-0.5, 23.25)
