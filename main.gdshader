@@ -11,7 +11,7 @@ void fragment() {
 	vec2 center = vec2(0.5);
 	float zoom = 1.0 - (swap_pulse * 0.015);
 	vec2 warped_uv = center + (uv - center) * zoom;
-	float aberration = swap_pulse * 0.004;
+	float aberration = swap_pulse * 0.006;
 	float r = texture(screen_texture, warped_uv + vec2(aberration, 0.0)).r;
 	float g = texture(screen_texture, warped_uv).g;
 	float b = texture(screen_texture, warped_uv - vec2(aberration, 0.0)).b;

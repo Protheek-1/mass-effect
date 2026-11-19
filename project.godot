@@ -17,12 +17,13 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=320
-window/size/viewport_height=180
+window/size/viewport_width=512
+window/size/viewport_height=352
 window/size/window_width_override=1280
-window/size/window_height_override=720
+window/size/window_height_override=880
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/vsync/vsync_mode=0
 
 [editor_plugins]
 
@@ -77,4 +78,5 @@ reset_level={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

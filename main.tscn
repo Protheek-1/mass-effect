@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c3g7fo4mbdtn4"]
+[gd_scene format=4 uid="uid://c3g7fo4mbdtn4"]
 
 [ext_resource type="Script" uid="uid://mab5vt225wmu" path="res://camera_2d.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dfv18ib4gcwta" path="res://main.gd" id="1_5vw27"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dh2x8bp37y1a2" path="res://door_manager.gd" id="2_272bh"]
 [ext_resource type="Script" uid="uid://ddfweg6ov2qeo" path="res://filter.gd" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cmd3nt20uqo65" path="res://light.tscn" id="4_272bh"]
+[ext_resource type="Texture2D" uid="uid://dw8rpqxgd6v6j" path="res://block.png" id="4_efxa6"]
 [ext_resource type="FontFile" uid="uid://43666li6et7g" path="res://ThaleahFat.ttf" id="7_kek77"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c84w1"]
@@ -17,23 +18,16 @@ shader_parameter/grid_spacing = 32.0
 shader_parameter/line_width = 2.0
 shader_parameter/grid_color = Color(0.05, 0.3, 0.35, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c84w1"]
-size = Vector2(2, 227)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_efxa6"]
+texture = ExtResource("4_efxa6")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dcsxo"]
-size = Vector2(2013.0002, 571.65)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
-size = Vector2(4360.001, 229.09998)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
-size = Vector2(1784.4009, 229.09998)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
-size = Vector2(1784.4009, 229.09998)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c57u"]
-size = Vector2(1784.4009, 229.09998)
+[sub_resource type="TileSet" id="TileSet_dcsxo"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_efxa6")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dcsxo"]
 shader = ExtResource("1_ig7tw")
@@ -71,92 +65,45 @@ offset_top = -614.0
 offset_right = 2037.0
 offset_bottom = 106.0
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1852099304 node_paths=PackedStringArray("player")]
-zoom = Vector2(0.75, 0.75)
-script = ExtResource("1_0xm2m")
-player = NodePath("../Heavy")
-
 [node name="LevelGuides" type="Node" parent="." unique_id=1747394512]
 
 [node name="ReferenceRect" type="ReferenceRect" parent="LevelGuides" unique_id=252989067]
-offset_left = -214.0
-offset_top = -120.0
-offset_right = 213.0
-offset_bottom = 106.0
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="LevelGuides/ReferenceRect" unique_id=1118048403]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelGuides/ReferenceRect/StaticBody2D" unique_id=374488034]
-position = Vector2(427, 112.5)
-shape = SubResource("RectangleShape2D_c84w1")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="LevelGuides/ReferenceRect" unique_id=733704088]
-position = Vector2(-427, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelGuides/ReferenceRect/StaticBody2D2" unique_id=379329790]
-position = Vector2(427, 112.5)
-shape = SubResource("RectangleShape2D_c84w1")
-
-[node name="ReferenceRect2" type="ReferenceRect" parent="LevelGuides" unique_id=2038857618]
-offset_left = 213.0
-offset_top = -120.0
-offset_right = 640.0
-offset_bottom = 106.0
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="LevelGuides/ReferenceRect2" unique_id=1956964635]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelGuides/ReferenceRect2/StaticBody2D" unique_id=1426604679]
-position = Vector2(427, 112.5)
-shape = SubResource("RectangleShape2D_c84w1")
-
-[node name="ReferenceRect3" type="ReferenceRect" parent="LevelGuides" unique_id=2010053584]
-offset_left = 640.0
-offset_top = -120.0
-offset_right = 1067.0
-offset_bottom = 106.0
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="LevelGuides/ReferenceRect3" unique_id=1281066467]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelGuides/ReferenceRect3/StaticBody2D" unique_id=1559797314]
-position = Vector2(427, 112.5)
-shape = SubResource("RectangleShape2D_c84w1")
-
-[node name="ReferenceRect4" type="ReferenceRect" parent="LevelGuides" unique_id=529578029]
-offset_left = 1067.0
-offset_top = -121.0
-offset_right = 1494.0
-offset_bottom = 105.0
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="LevelGuides/ReferenceRect4" unique_id=730674739]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelGuides/ReferenceRect4/StaticBody2D" unique_id=1836855031]
-position = Vector2(427, 112.5)
-shape = SubResource("RectangleShape2D_c84w1")
-
-[node name="Floor" type="StaticBody2D" parent="." unique_id=723804172]
-position = Vector2(3411.0002, 56.000008)
-scale = Vector2(10, 10)
+offset_left = -207.0
+offset_top = -205.99997
+offset_right = 220.0
+offset_bottom = 20.00003
+scale = Vector2(1.2, 1.564)
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1542542724]
-position = Vector2(465.49985, 290.8249)
-scale = Vector2(0.99999976, 0.99999976)
-shape = SubResource("RectangleShape2D_dcsxo")
+[node name="ReferenceRect2" type="ReferenceRect" parent="LevelGuides" unique_id=129996958]
+offset_left = 305.0
+offset_top = -206.0
+offset_right = 732.0
+offset_bottom = 20.0
+scale = Vector2(1.2, 1.564)
+metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="Floor" unique_id=1546706322]
-offset_left = -540.7
-offset_top = 4.700012
-offset_right = 1351.3
-offset_bottom = 926.7
-color = Color(0.8897218, 0.98164004, 0.9924999, 1)
+[node name="ReferenceRect3" type="ReferenceRect" parent="LevelGuides" unique_id=1167134312]
+offset_left = 817.0
+offset_top = -206.0
+offset_right = 1244.0
+offset_bottom = 20.0
+scale = Vector2(1.2, 1.564)
+metadata/_edit_group_ = true
+
+[node name="ReferenceRect4" type="ReferenceRect" parent="LevelGuides" unique_id=62056021]
+offset_left = 1330.0
+offset_top = -206.0
+offset_right = 1757.0
+offset_bottom = 20.0
+scale = Vector2(1.2, 1.564)
+metadata/_edit_group_ = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=91476907]
+position = Vector2(2, 2)
+tile_map_data = PackedByteArray("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")
+tile_set = SubResource("TileSet_dcsxo")
+physics_quadrant_size = 32
 
 [node name="DoorManager" type="Node" parent="." unique_id=2040377826]
 script = ExtResource("2_272bh")
@@ -165,77 +112,77 @@ script = ExtResource("2_272bh")
 
 [node name="Door" parent="Doors" unique_id=1573361650 node_paths=PackedStringArray("linked_door", "partner_door") instance=ExtResource("2_7mycd")]
 z_index = -1
-position = Vector2(177, 60)
+position = Vector2(246, 86)
 linked_door = NodePath("../Door4")
 allowed_character = 0
 partner_door = NodePath("../Door2")
 
 [node name="Door2" parent="Doors" unique_id=1413376315 node_paths=PackedStringArray("linked_door", "partner_door") instance=ExtResource("2_7mycd")]
 z_index = -1
-position = Vector2(177, -59)
+position = Vector2(245, -75)
 linked_door = NodePath("../Door3")
 allowed_character = 1
 partner_door = NodePath("../Door")
 
 [node name="Door3" parent="Doors" unique_id=101085460 node_paths=PackedStringArray("linked_door") instance=ExtResource("2_7mycd")]
 z_index = -1
-position = Vector2(250, -60)
+position = Vector2(352, -78)
 door_type = 1
 linked_door = NodePath("../Door2")
 allowed_character = 1
 
 [node name="Door4" parent="Doors" unique_id=2077933324 node_paths=PackedStringArray("linked_door") instance=ExtResource("2_7mycd")]
 z_index = -1
-position = Vector2(249, 60)
+position = Vector2(350, 50.999996)
 door_type = 1
 linked_door = NodePath("../Door")
 allowed_character = 0
 
 [node name="Door5" parent="Doors" unique_id=1162971006 node_paths=PackedStringArray("linked_door", "partner_door") instance=ExtResource("2_7mycd")]
 z_index = -1
-position = Vector2(602, 59)
+position = Vector2(773, 53)
 linked_door = NodePath("../Door8")
 allowed_character = 0
 partner_door = NodePath("../Door6")
 
 [node name="Door6" parent="Doors" unique_id=1546734110 node_paths=PackedStringArray("linked_door", "partner_door") instance=ExtResource("2_7mycd")]
 z_index = -1
-position = Vector2(601, -60)
+position = Vector2(773, -78)
 linked_door = NodePath("../Door7")
 allowed_character = 1
 partner_door = NodePath("../Door5")
 
 [node name="Door7" parent="Doors" unique_id=1100798030 node_paths=PackedStringArray("linked_door") instance=ExtResource("2_7mycd")]
 z_index = -1
-position = Vector2(673, 59)
+position = Vector2(856, 52)
 door_type = 1
 linked_door = NodePath("../Door6")
 allowed_character = 1
 
 [node name="Door8" parent="Doors" unique_id=93799829 node_paths=PackedStringArray("linked_door") instance=ExtResource("2_7mycd")]
 z_index = -1
-position = Vector2(722, 59)
+position = Vector2(905, 52)
 door_type = 1
 linked_door = NodePath("../Door5")
 allowed_character = 0
 
 [node name="Door9" parent="Doors" unique_id=1370064198 node_paths=PackedStringArray("linked_door", "partner_door") instance=ExtResource("2_7mycd")]
 z_index = -1
-position = Vector2(1023, 59)
+position = Vector2(1285, 50.999996)
 linked_door = NodePath("../Door12")
 allowed_character = 0
 partner_door = NodePath("../Door10")
 
 [node name="Door10" parent="Doors" unique_id=1433465031 node_paths=PackedStringArray("linked_door", "partner_door") instance=ExtResource("2_7mycd")]
 z_index = -1
-position = Vector2(1022, -51)
+position = Vector2(1287, -78)
 linked_door = NodePath("../Door11")
 allowed_character = 1
 partner_door = NodePath("../Door9")
 
 [node name="Door11" parent="Doors" unique_id=907109512 node_paths=PackedStringArray("linked_door", "partner_door") instance=ExtResource("2_7mycd")]
 z_index = -1
-position = Vector2(1098, 60)
+position = Vector2(1375, 49)
 door_type = 1
 linked_door = NodePath("../Door10")
 allowed_character = 1
@@ -243,97 +190,33 @@ partner_door = NodePath("../Door9")
 
 [node name="Door12" parent="Doors" unique_id=440818407 node_paths=PackedStringArray("linked_door", "partner_door") instance=ExtResource("2_7mycd")]
 z_index = -1
-position = Vector2(1145, 60)
+position = Vector2(1422, 49)
 door_type = 1
 linked_door = NodePath("../Door9")
 allowed_character = 0
 partner_door = NodePath("../Door9")
 
-[node name="Platforms" type="Node" parent="." unique_id=480517103]
-
-[node name="platform" type="StaticBody2D" parent="Platforms" unique_id=2109226773]
-position = Vector2(-193, -81)
-scale = Vector2(0.1, 0.1)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/platform" unique_id=1230756002]
-position = Vector2(1879.9991, 804.54974)
-scale = Vector2(0.9999995, 0.9999995)
-shape = SubResource("RectangleShape2D_272bh")
-
-[node name="ColorRect" type="ColorRect" parent="Platforms/platform" unique_id=591933386]
-offset_left = -539.9998
-offset_top = 679.99994
-offset_right = 4059.9998
-offset_bottom = 926.7
-color = Color(0.8897218, 0.98164004, 0.9924999, 1)
-
-[node name="platform2" type="StaticBody2D" parent="Platforms" unique_id=2031237718]
-position = Vector2(267.99997, -81)
-scale = Vector2(0.1, 0.1)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/platform2" unique_id=1994756843]
-position = Vector2(387.8003, 804.54974)
-scale = Vector2(0.99999964, 0.99999964)
-shape = SubResource("RectangleShape2D_5vw27")
-
-[node name="ColorRect" type="ColorRect" parent="Platforms/platform2" unique_id=1474671325]
-offset_left = -539.9998
-offset_top = 679.99994
-offset_right = 1270.0
-offset_bottom = 926.7
-color = Color(0.8897218, 0.98164004, 0.9924999, 1)
-
-[node name="platform3" type="StaticBody2D" parent="Platforms" unique_id=2038555729]
-position = Vector2(505, -81)
-scale = Vector2(0.1, 0.1)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/platform3" unique_id=1677807073]
-position = Vector2(440, 804.54974)
-scale = Vector2(0.99999964, 0.99999964)
-shape = SubResource("RectangleShape2D_kek77")
-
-[node name="ColorRect" type="ColorRect" parent="Platforms/platform3" unique_id=1515374825]
-offset_left = -470.0003
-offset_top = 679.99994
-offset_right = 1340.0
-offset_bottom = 926.7
-color = Color(0.8897218, 0.98164004, 0.9924999, 1)
-
-[node name="platform4" type="StaticBody2D" parent="Platforms" unique_id=1403183374]
-position = Vector2(932, -73)
-scale = Vector2(0.1, 0.1)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/platform4" unique_id=1138568361]
-position = Vector2(440, 804.54974)
-scale = Vector2(0.99999964, 0.99999964)
-shape = SubResource("RectangleShape2D_4c57u")
-
-[node name="ColorRect" type="ColorRect" parent="Platforms/platform4" unique_id=123827182]
-offset_left = -470.0003
-offset_top = 679.99994
-offset_right = 1340.0
-offset_bottom = 926.7
-color = Color(0.8897218, 0.98164004, 0.9924999, 1)
-
 [node name="Heavy" parent="." unique_id=1903036429 instance=ExtResource("2_1bvp3")]
-position = Vector2(-191, 79)
+position = Vector2(-147, 73)
 
 [node name="Light" parent="." unique_id=199912418 instance=ExtResource("4_272bh")]
-position = Vector2(-188, -37)
+position = Vector2(-144, -56)
 
 [node name="Label" type="Label" parent="." unique_id=1140927904]
-offset_left = 1216.0
-offset_top = -41.0
-offset_right = 1420.0
-offset_bottom = 3.0
+offset_left = 2942.0
+offset_top = -60.0
+offset_right = 3146.0
+offset_bottom = -16.0
 theme_override_colors/font_color = Color(0.22352941, 0.49803922, 0.65882355, 1)
 theme_override_fonts/font = ExtResource("7_kek77")
 theme_override_font_sizes/font_size = 48
 text = "Yay u win !"
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1852099304 node_paths=PackedStringArray("player")]
+position = Vector2(49, -29)
+script = ExtResource("1_0xm2m")
+player = NodePath("../Heavy")
 
 [node name="Filter" type="ColorRect" parent="." unique_id=1532236078]
 z_index = 2
@@ -344,3 +227,4 @@ offset_right = -215.0
 offset_bottom = -129.0
 mouse_filter = 2
 script = ExtResource("3_h2yge")
+metadata/_edit_use_anchors_ = true
