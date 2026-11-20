@@ -45,14 +45,19 @@ func _on_body_entered(body: Node2D, door: Door) -> void:
 		complete_door_transition(door)
 	
 func _on_body_exited(body: Node2D, door: Door):
-	if transitioning or not door.is_goal_door:
+	if transitioning:
 		return
-	if body == heavy_body:
-		heavy_ready = false
-		heavy_body = null
-	if body == light_body:
-		light_ready = false
-		light_body = null
+	if door.is_goal_door:
+		if body == heavy_body:
+			heavy_ready = false
+			heavy_body = null
+		elif body == light_body:
+			light_ready = false
+			light_body = null
+	else:
+		if body == door.entered_body:
+			door.set_active(false)
+			door.entered_body = null
 		
 func check_goal() -> void:
 	if not heavy_ready or not light_ready:
@@ -67,7 +72,7 @@ func check_goal() -> void:
 func teleport_character(body: CharacterBody2D, destination: Door) -> void:
 	if body == null or destination == null:
 		return
-	body.global_position = destination.arrival_point.global_position + Vector2(0, 0)
+	body.global_position = destination.arrival_point.global_position + Vector2(0, -2)
 	body.velocity = Vector2.ZERO
 
 func complete_door_transition(door: Door) -> void:
@@ -88,6 +93,8 @@ func complete_door_transition(door: Door) -> void:
 		door.partner_door.linked_door
 	)
 	door.set_active(false)
+	door.entered_body = null
 	door.partner_door.set_active(false)
+	door.partner_door.entered_body = null
 	transitioning = false
 	first_body.is_active = true

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: float = 90.0
+@export var speed: float = 100.0
 @export var jump_velocity : float = -340.0
 @export var rise_gravity_mult: float = 1.1
 @export var fall_gravity_mult: float = 2.0
@@ -107,5 +107,5 @@ func play_swap_pulse():
 func landing_shake():
 	var tween = create_tween()
 	tween.tween_property(camera, "offset", Vector2(0, 2), 0.04)
-	tween.tween_property(camera, "offset", Vector2(0, -1), 0.04)
+	tween.tween_property(camera, "offset", Vector2(0, -2), 0.04)
 	tween.tween_property(camera, "offset", Vector2.ZERO, 0.08)

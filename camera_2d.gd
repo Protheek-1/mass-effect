@@ -3,7 +3,7 @@ extends Camera2D
 @export var player: CharacterBody2D 
 
 const ROOM_WIDTH: float = 512.0
-const ROOM_HEIGHT: float = 288.0
+const ROOM_HEIGHT: float = 352.0
 
 # Stores where you placed the camera in the editor
 var start_offset: Vector2

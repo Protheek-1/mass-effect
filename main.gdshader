@@ -1,8 +1,8 @@
 shader_type canvas_item;
 
 uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_linear;
-uniform float scanline_amount: hint_range(0.0, 0.1) = 0.06;
-uniform float scanline_spacing: hint_range(2.0, 8.0) = 4.0;
+uniform float scanline_amount: hint_range(0.0, 0.1) = 0.09;
+uniform float scanline_spacing: hint_range(2.0, 8.0) = 7.0;
 uniform float vignette_intensity : hint_range(0.0, 1.0) = 0.2;
 uniform float swap_pulse : hint_range(0.0, 1.0) = 0.0;
 
