@@ -3,15 +3,17 @@ extends CharacterBody2D
 @export var speed: float = 120.0
 @export var jump_velocity : float = -340.0
 @export var rise_gravity_mult: float = 0.8
-@export var fall_gravity_mult: float = 0.5
+@export var fall_gravity_mult: float = 0.4
 @export var acceleration: float = 450
 @export var friction: float = 500
 @export var is_active: bool = false
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var floor_ray: RayCast2D = $FloorRay
 @onready var floor_ray_left: RayCast2D = $FloorRayLeft
 @onready var floor_ray_right: RayCast2D = $FloorRayRight
 @onready var head_ray: RayCast2D = $HeadRay
 @onready var heavy = get_parent().get_node("Heavy")
+@onready var glow: PointLight2D = $PointLight2D
 var base_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var carried_by_heavy: bool = false
 
@@ -36,6 +38,7 @@ func _physics_process(delta: float) -> void:
 	var standing_on_heavy: bool = is_standing_on_heavy()
 	
 	if is_active:
+		glow.visible = true
 		if (
 			Input.is_action_just_pressed("jump")
 			and (is_on_floor() or standing_on_heavy)
@@ -48,10 +51,19 @@ func _physics_process(delta: float) -> void:
 		var change_rate := (
 			acceleration if direction != 0.0 else friction
 		)
-		
+	
 		velocity.x = move_toward(velocity.x, target_speed, change_rate * delta)
+		if direction < 0.0:
+			anim.play("walk_left")
+		elif direction > 0.0:
+			anim.play("walk_right")
+		else:
+			anim.play("active")
+	
 	else:
+		glow.visible = false
 		velocity.x = move_toward(velocity.x, 0.0, friction * delta)
+		anim.play("inactive")
 	move_and_slide()
 		
 func apply_launch(launch_power: float) -> void:

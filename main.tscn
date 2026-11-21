@@ -16,11 +16,13 @@
 texture = ExtResource("3_dg77c")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+0:0/0/modulate = Color(0.59642965, 0.60877204, 0.6046617, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_efxa6"]
 texture = ExtResource("4_efxa6")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+0:0/0/modulate = Color(0.61728644, 0.6288876, 0.625019, 1)
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSet" id="TileSet_dcsxo"]
@@ -41,20 +43,27 @@ script = ExtResource("1_5vw27")
 
 [node name="BackGround" type="ColorRect" parent="." unique_id=1408265289]
 z_index = -2
-offset_left = -521.0
-offset_top = -631.0
-offset_right = 18256.0
-offset_bottom = 11256.0
-color = Color(0.4627451, 0.76862746, 0.85490197, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9388.5
+offset_top = -5943.5
+offset_right = 9388.5
+offset_bottom = 5943.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.083311744, 0.24989936, 0.35630408, 1)
 metadata/_edit_lock_ = true
 
 [node name="LevelGuides" type="Node" parent="." unique_id=1747394512]
 
 [node name="ReferenceRect" type="ReferenceRect" parent="LevelGuides" unique_id=252989067]
-offset_left = -207.0
-offset_top = -205.99997
-offset_right = 220.0
-offset_bottom = 20.00003
+offset_left = -207.00002
+offset_top = -206.99997
+offset_right = 219.99998
+offset_bottom = 19.00003
 scale = Vector2(1.2, 1.564)
 metadata/_edit_group_ = true
 
@@ -157,7 +166,7 @@ allowed_character = 0
 
 [node name="Door5" parent="Doors" unique_id=1162971006 node_paths=PackedStringArray("linked_door", "partner_door") instance=ExtResource("2_7mycd")]
 z_index = -1
-position = Vector2(773, 88)
+position = Vector2(772, 82)
 linked_door = NodePath("../Door8")
 allowed_character = 0
 partner_door = NodePath("../Door6")
@@ -171,14 +180,14 @@ partner_door = NodePath("../Door5")
 
 [node name="Door7" parent="Doors" unique_id=1100798030 node_paths=PackedStringArray("linked_door") instance=ExtResource("2_7mycd")]
 z_index = -1
-position = Vector2(856, 87)
+position = Vector2(856, 82)
 door_type = 1
 linked_door = NodePath("../Door6")
 allowed_character = 1
 
 [node name="Door8" parent="Doors" unique_id=93799829 node_paths=PackedStringArray("linked_door") instance=ExtResource("2_7mycd")]
 z_index = -1
-position = Vector2(905, 87)
+position = Vector2(905, 82)
 door_type = 1
 linked_door = NodePath("../Door5")
 allowed_character = 0

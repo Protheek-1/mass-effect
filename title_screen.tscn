@@ -112,7 +112,7 @@ offset_right = 442.0
 offset_bottom = 262.89474
 theme_override_fonts/font = ExtResource("1_ig5kc")
 theme_override_font_sizes/font_size = 32
-text = "swap:   space"
+text = "swap:   space or enter"
 
 [node name="RestartLabel" type="Label" parent="ControlsPanel" unique_id=2035360893]
 layout_mode = 0

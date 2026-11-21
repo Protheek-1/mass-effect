@@ -1,13 +1,15 @@
 extends CharacterBody2D
 
 @export var speed: float = 100.0
-@export var jump_velocity : float = -340.0
+@export var jump_velocity : float = -345.0
 @export var rise_gravity_mult: float = 1.1
 @export var fall_gravity_mult: float = 2.0
 @export var acceleration: float = 250
 @export var friction: float = 600
 @export var is_active: bool = true
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var light = get_parent().get_node("Light")
+@onready var glow: PointLight2D = $PointLight2D
 @onready var crt_material: ShaderMaterial = get_parent().get_node("Filter").material
 var base_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var carrying_light: bool = false
@@ -42,6 +44,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y += base_gravity * gravity_mult * delta
 	
 	if is_active:
+		glow.visible = true
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = jump_velocity
 		var direction := Input.get_axis("ui_left", "ui_right")
@@ -49,8 +52,17 @@ func _physics_process(delta: float) -> void:
 		var change_rate = acceleration if direction != 0.0 else friction
 		
 		velocity.x = move_toward(velocity.x, target_speed, change_rate * delta)
+		if direction < 0.0:
+			anim.play("walk_left")
+		elif direction > 0.0:
+			anim.play("walk_right")
+		else:
+			anim.play("active")
+	
 	else:
+		glow.visible = false
 		velocity.x = move_toward(velocity.x, 0.0, friction * delta)
+		anim.play("inactive")
 	move_and_slide()
 	
 	if is_on_floor() and not was_on_floor:
@@ -96,12 +108,12 @@ func play_swap_pulse():
 	tween.tween_method(
 		func(value: float):
 			crt_material.set_shader_parameter("swap_pulse", value),
-		0.0, 1.0, 0.08
+		0.0, 1.6, 0.08
 	)
 	tween.tween_method(
 		func(value: float):
 			crt_material.set_shader_parameter("swap_pulse", value),
-		1.0, 0.0, 0.25
+		1.6, 0.0, 0.25
 	)
 
 func landing_shake():

@@ -1,46 +1,148 @@
 [gd_scene format=3 uid="uid://cmd3nt20uqo65"]
 
 [ext_resource type="Script" uid="uid://dgg8ii8tybj6l" path="res://light.gd" id="1_hdgcg"]
+[ext_resource type="Texture2D" uid="uid://7k4m6v6wv3mq" path="res://light-Sheet.png" id="2_we4ua"]
+
+[sub_resource type="Gradient" id="Gradient_we4ua"]
+offsets = PackedFloat32Array(0, 0.3846154, 0.74125874)
+colors = PackedColorArray(1, 1, 1, 1, 0.4245283, 0.4245283, 0.4245283, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dcsxo"]
+gradient = SubResource("Gradient_we4ua")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_we4ua"]
-size = Vector2(105, 153.25)
+size = Vector2(125, 187.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njlvs"]
+atlas = ExtResource("2_we4ua")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esukd"]
+atlas = ExtResource("2_we4ua")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flval"]
+atlas = ExtResource("2_we4ua")
+region = Rect2(192, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng3tf"]
+atlas = ExtResource("2_we4ua")
+region = Rect2(224, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbk6j"]
+atlas = ExtResource("2_we4ua")
+region = Rect2(256, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd7xi"]
+atlas = ExtResource("2_we4ua")
+region = Rect2(288, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkgnj"]
+atlas = ExtResource("2_we4ua")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0kjl"]
+atlas = ExtResource("2_we4ua")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h4ho"]
+atlas = ExtResource("2_we4ua")
+region = Rect2(128, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuj2i"]
+atlas = ExtResource("2_we4ua")
+region = Rect2(160, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dcsxo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njlvs")
+}],
+"loop": 1,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esukd")
+}],
+"loop": 1,
+"name": &"inactive",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flval")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ng3tf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbk6j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xd7xi")
+}],
+"loop": 1,
+"name": &"walk_left",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkgnj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0kjl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6h4ho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wuj2i")
+}],
+"loop": 1,
+"name": &"walk_right",
+"speed": 8.0
+}]
 
 [node name="Light" type="CharacterBody2D" unique_id=199912418]
 scale = Vector2(0.16, 0.16)
 safe_margin = 0.001
 script = ExtResource("1_hdgcg")
 
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=2084103077]
+position = Vector2(7.6293945e-06, 81.25)
+scale = Vector2(14.504881, 14.089844)
+color = Color(0.71313626, 0.85003287, 0.9288983, 1)
+energy = 0.2
+texture = SubResource("GradientTexture2D_dcsxo")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1147086959]
-position = Vector2(-1.75, 76.5)
+position = Vector2(0, 78)
 shape = SubResource("RectangleShape2D_we4ua")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=606662971]
-offset_left = -56.25
-offset_right = 50.75
-offset_bottom = 153.0
-color = Color(0.91228896, 0.9122889, 0.91228884, 1)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=799591609]
+light_mask = 2
+position = Vector2(0, 64)
+scale = Vector2(4.5, 4.5)
+sprite_frames = SubResource("SpriteFrames_dcsxo")
+animation = &"walk_right"
 
 [node name="FloorRay" type="RayCast2D" parent="." unique_id=2144984647]
-position = Vector2(0, 131.25)
+position = Vector2(0, 150)
 target_position = Vector2(0, 31.25)
 
 [node name="FloorRayRight" type="RayCast2D" parent="." unique_id=851078525]
-position = Vector2(43.75, 131.25)
+position = Vector2(56.25, 150)
 target_position = Vector2(0, 31.25)
 
 [node name="FloorRayLeft" type="RayCast2D" parent="." unique_id=2119784006]
-position = Vector2(-50, 131.25)
+position = Vector2(-56.25, 150)
 target_position = Vector2(0, 31.25)
 
 [node name="HeadRay" type="RayCast2D" parent="." unique_id=1873456273]
-position = Vector2(0.0002593994, 25.00007)
+position = Vector2(0, 6.25)
 target_position = Vector2(0, -37.500107)
-
-[node name="Label" type="Label" parent="." unique_id=1289694635]
-offset_left = -24.999857
-offset_top = 37.500107
-offset_right = 15.000143
-offset_bottom = 104.50011
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 48
-text = "L"
