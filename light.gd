@@ -64,6 +64,8 @@ func _physics_process(delta: float) -> void:
 		glow.visible = false
 		velocity.x = move_toward(velocity.x, 0.0, friction * delta)
 		anim.play("inactive")
+	
+	
 	move_and_slide()
 		
 func apply_launch(launch_power: float) -> void:

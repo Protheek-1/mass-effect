@@ -129,3 +129,15 @@ position = Vector2(0, 64)
 scale = Vector2(4.5, 4.5)
 sprite_frames = SubResource("SpriteFrames_dcsxo")
 animation = &"walk_left"
+
+[node name="SmashRay" type="RayCast2D" parent="." unique_id=1356172997]
+position = Vector2(0, 131.25037)
+target_position = Vector2(0, 62.500183)
+
+[node name="SmashRay2" type="RayCast2D" parent="." unique_id=532325212]
+position = Vector2(-56.25026, 131.25037)
+target_position = Vector2(0, 62.500183)
+
+[node name="SmashRay3" type="RayCast2D" parent="." unique_id=584482321]
+position = Vector2(56.25026, 131.25037)
+target_position = Vector2(0, 62.500183)

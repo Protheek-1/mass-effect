@@ -191,4 +191,4 @@ gizmo_extents = 3.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=866340915]
 position = Vector2(0, 38)
-polygon = PackedVector2Array(-18, -1, -30, 9, 30, 9, 18, -1)
+polygon = PackedVector2Array(-15, -1, -30, 9, 30, 9, 14, -1)

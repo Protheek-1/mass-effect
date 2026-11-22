@@ -10,6 +10,10 @@ extends CharacterBody2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var light = get_parent().get_node("Light")
 @onready var glow: PointLight2D = $PointLight2D
+@onready var smash_ray: RayCast2D = $SmashRay
+@onready var smash_ray_left: RayCast2D = $SmashRay2
+@onready var smash_ray_right: RayCast2D = $SmashRay3
+@export var min_smash_speed: float = 20.0
 @onready var crt_material: ShaderMaterial = get_parent().get_node("Filter").material
 var base_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var carrying_light: bool = false
@@ -63,6 +67,30 @@ func _physics_process(delta: float) -> void:
 		glow.visible = false
 		velocity.x = move_toward(velocity.x, 0.0, friction * delta)
 		anim.play("inactive")
+	if not is_on_floor():
+		print("vel.y: ", velocity.y, " | ray colliding: ", smash_ray.is_colliding())
+
+	if velocity.y >= min_smash_speed:
+		var broke_any: bool = false
+		for ray in [smash_ray, smash_ray_left, smash_ray_right]:
+			if not ray:
+				continue
+			ray.force_raycast_update()
+			if ray.is_colliding():
+				var collider : Object = ray.get_collider()
+				print("Hit: ", collider, " | in group: ", collider.is_in_group("breakable"))
+				if collider is TileMapLayer and collider.is_in_group("breakable"):
+					var hit_pos: Vector2 = ray.get_collision_point() + Vector2(0, 2)
+					var cell_coords: Vector2i = collider.local_to_map(collider.to_local(hit_pos))
+					if collider.get_cell_source_id(cell_coords) != -1:
+						var tile_world_pos: Vector2 = collider.to_global(collider.map_to_local(cell_coords))
+						collider.erase_cell(cell_coords)
+						spawn_break_particles(tile_world_pos)
+						broke_any = true
+		if broke_any:
+			velocity.y *= 0.5
+			if camera and camera.has_method("add_shake"):
+				camera.add_shake(5.0)
 	move_and_slide()
 	
 	if is_on_floor() and not was_on_floor:
@@ -121,3 +149,29 @@ func landing_shake():
 	tween.tween_property(camera, "offset", Vector2(0, 2), 0.04)
 	tween.tween_property(camera, "offset", Vector2(0, -2), 0.04)
 	tween.tween_property(camera, "offset", Vector2.ZERO, 0.08)
+	
+func spawn_break_particles(world_pos: Vector2) -> void:
+	var particles := CPUParticles2D.new()
+	particles.global_position = world_pos
+	particles.emitting = true
+	particles.one_shot = true
+	particles.explosiveness = 0.95
+	particles.amount = 12
+	particles.lifetime = 0.45
+	particles.emission_shape = CPUParticles2D.EMISSION_SHAPE_RECTANGLE
+	particles.emission_rect_extents = Vector2(6.0, 6.0)
+	particles.direction = Vector2(0, -1)
+	particles.spread = 160.0
+	particles.initial_velocity_min = 45.0
+	particles.initial_velocity_max = 115.0
+	particles.gravity = Vector2(0, 480.0)
+	particles.scale_amount_min = 1.5
+	particles.scale_amount_max = 2.5
+	var grad := Gradient.new()
+	grad.set_color(0, Color("#D47426"))
+	grad.add_point(0.25, Color("#55606B"))
+	grad.set_color(1, Color("#272D3400"))
+	particles.color_ramp = grad
+	get_parent().add_child(particles)
+	particles.finished.connect(particles.queue_free)
+	

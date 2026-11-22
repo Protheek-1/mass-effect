@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://v1700ihoo13t"]
+
+[ext_resource type="Script" uid="uid://b6k7aanibyenj" path="res://heavy.gd" id="1_ojdgy"]
+[ext_resource type="Texture2D" uid="uid://woypftspquru" path="res://heavy-Sheet.png" id="2_eb85f"]
+
+[sub_resource type="Gradient" id="Gradient_5qqhr"]
+offsets = PackedFloat32Array(0, 0.3846154, 0.74125874)
+colors = PackedColorArray(1, 1, 1, 1, 0.4245283, 0.4245283, 0.4245283, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eb85f"]
+gradient = SubResource("Gradient_5qqhr")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dcsxo"]
+size = Vector2(125.00057, 190.75075)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otqv7"]
+atlas = ExtResource("2_eb85f")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivfxq"]
+atlas = ExtResource("2_eb85f")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1vjj"]
+atlas = ExtResource("2_eb85f")
+region = Rect2(192, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfdmf"]
+atlas = ExtResource("2_eb85f")
+region = Rect2(224, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m80wl"]
+atlas = ExtResource("2_eb85f")
+region = Rect2(256, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nf8ty"]
+atlas = ExtResource("2_eb85f")
+region = Rect2(288, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htxpt"]
+atlas = ExtResource("2_eb85f")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jewcw"]
+atlas = ExtResource("2_eb85f")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llcqx"]
+atlas = ExtResource("2_eb85f")
+region = Rect2(128, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu3n3"]
+atlas = ExtResource("2_eb85f")
+region = Rect2(160, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dcsxo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otqv7")
+}],
+"loop": 1,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivfxq")
+}],
+"loop": 1,
+"name": &"inactive",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1vjj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfdmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m80wl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nf8ty")
+}],
+"loop": 1,
+"name": &"walk_left",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htxpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jewcw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llcqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu3n3")
+}],
+"loop": 1,
+"name": &"walk_right",
+"speed": 4.0
+}]
+
+[node name="Heavy" type="CharacterBody2D" unique_id=1903036429]
+scale = Vector2(0.15999927, 0.15999955)
+script = ExtResource("1_ojdgy")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1713631727]
+position = Vector2(7.6293945e-06, 81.25)
+scale = Vector2(14.504881, 14.089843)
+color = Color(0.8207671, 0.5513293, 0, 1)
+energy = 0.4
+texture = SubResource("GradientTexture2D_eb85f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1008058106]
+position = Vector2(0, 78)
+shape = SubResource("RectangleShape2D_dcsxo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1627020706]
+light_mask = 2
+position = Vector2(0, 64)
+scale = Vector2(4.5, 4.5)
+sprite_frames = SubResource("SpriteFrames_dcsxo")
+animation = &"walk_left"
+
+[node name="SmashRay" type="RayCast2D" parent="." unique_id=1356172997]
+position = Vector2(0, 131.25037)
+target_position = Vector2(0, 62.500183)
+
+[node name="SmashRay2" type="RayCast2D" parent="." unique_id=532325212]
+position = Vector2(-56.25026, 131.25037)
+target_position = Vector2(0, 62.500183)
+
+[node name="SmashRay3" type="RayCast2D" parent="." unique_id=584482321]
+position = Vector2(56.25026, 131.25037)
+target_position = Vector2(0, 62.500183)
