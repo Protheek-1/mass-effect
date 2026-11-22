@@ -321,10 +321,10 @@ position = Vector2(3186, -35)
 position = Vector2(1202, 30)
 
 [node name="Heavy" parent="." unique_id=1903036429 instance=ExtResource("2_1bvp3")]
-position = Vector2(3212.9998, 75)
+position = Vector2(-136, 94)
 
 [node name="Light" parent="." unique_id=199912418 instance=ExtResource("4_272bh")]
-position = Vector2(3102, -100)
+position = Vector2(-133, -65)
 
 [node name="Label" type="Label" parent="." unique_id=1140927904]
 offset_left = 3465.0
@@ -339,15 +339,29 @@ text = "Yay u win !"
 metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="." unique_id=2092619730]
-offset_left = 3613.0
-offset_top = -86.0
-offset_right = 3953.0
-offset_bottom = 55.0
+offset_left = 3609.0
+offset_top = -85.0
+offset_right = 3949.0
+offset_bottom = 56.0
 theme_override_colors/font_color = Color(0.7015011, 0.8552672, 0.95752364, 1)
 theme_override_constants/line_spacing = -7
 theme_override_fonts/font = ExtResource("7_kek77")
 theme_override_font_sizes/font_size = 80
 text = ":)"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="." unique_id=774547466]
+offset_left = 1352.0
+offset_top = -152.0
+offset_right = 1692.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(0.82577205, 0.91481435, 0.9752467, 1)
+theme_override_constants/line_spacing = -4
+theme_override_fonts/font = ExtResource("7_kek77")
+theme_override_font_sizes/font_size = 16
+text = "i wonder if heavy is
+strong enough to jump
+with light on his head"
 metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1852099304 node_paths=PackedStringArray("player")]
