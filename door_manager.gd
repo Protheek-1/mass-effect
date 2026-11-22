@@ -76,25 +76,38 @@ func teleport_character(body: CharacterBody2D, destination: Door) -> void:
 	body.velocity = Vector2.ZERO
 
 func complete_door_transition(door: Door) -> void:
-	await get_tree().create_timer(0.2).timeout
-	transitioning = true
 	var first_body = door.entered_body
 	var second_body = door.partner_door.entered_body
+	if first_body == null or second_body == null:
+		return
+	transitioning = true
+	await get_tree().create_timer(0.5).timeout
+	if first_body == null or second_body == null:
+		transitioning = false
+		return
 	first_body.global_position = door.arrival_point.global_position
 	second_body.global_position = door.partner_door.arrival_point.global_position
 	first_body.velocity = Vector2.ZERO
 	second_body.velocity = Vector2.ZERO
 	first_body.is_active = false
 	second_body.is_active = false
+	door.play_close()
+	door.partner_door.play_close()
 	await get_tree().create_timer(2.0).timeout
 	teleport_character(door.entered_body, door.linked_door)
 	teleport_character(
 		door.partner_door.entered_body,
 		door.partner_door.linked_door
 	)
+	door.is_closing = false
+	door.partner_door.is_closing = false
 	door.set_active(false)
 	door.entered_body = null
 	door.partner_door.set_active(false)
 	door.partner_door.entered_body = null
+	if door.linked_door:
+		door.linked_door.play_open()
+	if door.partner_door.linked_door:
+		await door.partner_door.linked_door.play_open()
 	transitioning = false
 	first_body.is_active = true
