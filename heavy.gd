@@ -28,7 +28,15 @@ func _ready() -> void:
 	carried_shape = CollisionShape2D.new()
 	carried_shape.disabled = true
 	add_child(carried_shape)
-
+	var warmup := CPUParticles2D.new()
+	warmup.emitting = true
+	warmup.one_shot = true
+	warmup.amount = 1
+	warmup.lifetime = 0.05
+	warmup.modulate.a = 0.0
+	add_child(warmup)
+	warmup.finished.connect(warmup.queue_free)
+	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("swap_charectar"):
 		is_active = not is_active
@@ -67,9 +75,7 @@ func _physics_process(delta: float) -> void:
 		glow.visible = false
 		velocity.x = move_toward(velocity.x, 0.0, friction * delta)
 		anim.play("inactive")
-	if not is_on_floor():
-		print("vel.y: ", velocity.y, " | ray colliding: ", smash_ray.is_colliding())
-
+	
 	if velocity.y >= min_smash_speed:
 		var broke_any: bool = false
 		for ray in [smash_ray, smash_ray_left, smash_ray_right]:
@@ -78,7 +84,6 @@ func _physics_process(delta: float) -> void:
 			ray.force_raycast_update()
 			if ray.is_colliding():
 				var collider : Object = ray.get_collider()
-				print("Hit: ", collider, " | in group: ", collider.is_in_group("breakable"))
 				if collider is TileMapLayer and collider.is_in_group("breakable"):
 					var hit_pos: Vector2 = ray.get_collision_point() + Vector2(0, 2)
 					var cell_coords: Vector2i = collider.local_to_map(collider.to_local(hit_pos))
@@ -158,6 +163,9 @@ func spawn_break_particles(world_pos: Vector2) -> void:
 	particles.explosiveness = 0.95
 	particles.amount = 12
 	particles.lifetime = 0.45
+	var img := Image.create(2, 2, false, Image.FORMAT_RGBA8)
+	img.fill(Color.WHITE)
+	particles.texture = ImageTexture.create_from_image(img)
 	particles.emission_shape = CPUParticles2D.EMISSION_SHAPE_RECTANGLE
 	particles.emission_rect_extents = Vector2(6.0, 6.0)
 	particles.direction = Vector2(0, -1)
@@ -169,8 +177,8 @@ func spawn_break_particles(world_pos: Vector2) -> void:
 	particles.scale_amount_max = 2.5
 	var grad := Gradient.new()
 	grad.set_color(0, Color("#D47426"))
-	grad.add_point(0.25, Color("#55606B"))
 	grad.set_color(1, Color("#272D3400"))
+	grad.add_point(0.5, Color("#55606B"))
 	particles.color_ramp = grad
 	get_parent().add_child(particles)
 	particles.finished.connect(particles.queue_free)
