@@ -56,9 +56,9 @@ func _set_pressed(pressed: bool) -> void:
 			layer.collision_enabled = not any_pressed
 			layer.modulate.a = 0.20 if any_pressed else 1.0
 		
-func _spawn_phase_particles(world_pos: Vector2, phasing_out: bool) -> void:
+func _spawn_phase_particles(world_pos: Vector2, _phasing_out: bool) -> void:
 	var particles := CPUParticles2D.new()
-	particles.global_position = world_pos
+	particles.global_position = world_pos       
 	particles.emitting = true
 	particles.one_shot = true
 	particles.explosiveness = 0.95

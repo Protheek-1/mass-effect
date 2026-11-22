@@ -99,6 +99,10 @@ func complete_door_transition(door: Door) -> void:
 		door.partner_door.entered_body,
 		door.partner_door.linked_door
 	)
+	if door.linked_door and (door.linked_door.name == "Door27" or door.linked_door.name == "Door28"):
+		var main_scene := get_tree().current_scene
+		if main_scene and main_scene.has_method("finish_timer"):
+			main_scene.finish_timer()
 	door.is_closing = false
 	door.partner_door.is_closing = false
 	door.set_active(false)
