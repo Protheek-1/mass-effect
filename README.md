@@ -1,30 +1,33 @@
 # Mass Effect
 
-<img width="1585" height="886" alt="Screenshot 2026-11-15 230357" src="https://github.com/user-attachments/assets/ecba7a54-d609-4c43-940c-4d176763bbc8" />
+<img width="1613" height="1106" alt="Screenshot 2026-11-22 234825" src="https://github.com/user-attachments/assets/3949cf65-5620-41e5-8b88-0c7dcc7731b6" />
 
-<img width="1589" height="884" alt="Screenshot 2026-11-15 221630" src="https://github.com/user-attachments/assets/ad6b8f60-0c3f-4ba2-8624-768cfeaf20ee" />
+<img width="1144" height="282" alt="Screenshot 2026-11-22 235557" src="https://github.com/user-attachments/assets/3a3fe183-a329-4173-9c0c-06504692eb7d" />
 
-a tiny little platformer game where you have a heavy guy and a light guy, tbh i made this game partly due the the theme of this week and partly because i thought the name mass effect would be funny, for completely unknown reasons.
+a tiny little platformer speedrun game where you have a heavy guy and a light guy, tbh i made this game partly due the the theme of this week and partly because i thought the name mass effect would be funny, for completely unknown reasons.
 
 ## What works
 - movement
 - doors
 - character swap
 - title screen
-- simple godot project setup
+- level restart
+- animations
+- breakable blocks
+- pressure plates
 
 ## How to play
-1. Download the release zip
-2. extract all and run godot app
+1. Click the itch link below
 3. Press Play
 4. Move with WASD / arrow keys
 5. Swap character with space
 6. Press r to reset
 7. have fun!!!!
+8. (release on github is outdated by 1 week)
 
 ## Notes
-This is a work in progress, so there's no art or real hard levels and may be rough around the edges. Made in Godot
+This game is finally done, all art and levels, didn't have time for sound fx tho
 
 ## Links
-- release: https://github.com/Protheek-1/mass-effect/releases/tag/V0.7
+- itch demo: https://protheek.itch.io/mass-effect
 
